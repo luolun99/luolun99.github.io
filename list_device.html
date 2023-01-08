@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home</title>
+</head>
+
+<body>
+    <!-----------------------------------------Nav Bar Start--------------------------------->
+    <nav>
+        <div>
+            <!--Nav Bar-->
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/add_device">Add Device</a></li>
+                <li><a href="/list_device">Manage Device</a></li>
+                <li><a href="/search_device">Search Device</a></li>
+            </ul>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!------------------------------------------Nav Bar ends-------------------------------->
+    <h1>This is a list of device page.</h1>
+
+
+    <table style="border: 4px #000000 solid">
+        <thead>
+            <tr>
+                <!-- heading for the table -->
+                <th style="border: 2px #000000 solid">ID</th>
+                <th style="border: 2px #000000 solid">Type</th>
+                <th style="border: 2px #000000 solid">Name</th>
+                <th style="border: 2px #000000 solid">Status</th>
+                <th style="border: 2px #000000 solid">Created time</th>
+                <th style="border: 2px #000000 solid">Updated time</th>
+                <th style="border: 2px #000000 solid">Volume</th>
+                <th style="border: 2px #000000 solid">Channel</th>
+                <th style="border: 2px #000000 solid">Temperature</th>
+                <th style="border: 2px #000000 solid">Frezzer temperature</th>
+                <th style="border: 2px #000000 solid">Refrigerator temperature</th>
+                <th style="border: 2px #000000 solid">Fan Speed</th>
+                <th style="border: 2px #000000 solid">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% allDevices.forEach(function(devices) { %>
+                <tr>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.ID %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.type %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.name %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <% if(devices.status=="1" ) { %>
+                            <p>On</p>
+                            <% }else{ %>
+                                <p>Off</p>
+                                <%} %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.create_time %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.update_time %>
+                    </td>
+
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.volume %>
+                    </td>
+
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.channel %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.temperature %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.frezzer_temp %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.refrigerator_temp %>
+                    </td>
+                    <td style="border: 2px #000000 solid">
+                        <%= devices.fan_speed %>
+                    </td>
+
+                    <td style="border: 2px #000000 solid">
+                        <!-- update feature -->
+                        <a href="/update_device/?ID=<%= devices.ID %>">
+                            Update
+                        </a>
+                        <!-- delete feature -->
+                        <a id="delete" href="/delete_device/?ID=<%= devices.ID %>" onclick="myFunction()">
+                            Delete
+                        </a>
+                    </td>
+
+                </tr>
+                <%}) %>
+        </tbody>
+    </table>
+
+
+
+    <!------------------------------------------Footer-------------------------------->
+    <div id="copyright">
+        <p style="margin-top:10px">2022 @ Smart Home. </p>
+    </div>
+    <!---------------------------------------Footer Ends------------------------------->
+
+
+    <script src="/Js/jquery-3.6.0.js"></script>
+    <script src="/Js/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // confrimation to delete the device
+        function myFunction() {
+            var x;
+            var r = confirm("are you sure going to delete this device!");
+            if (r == true) {
+            }
+            else {
+            }
+        }
+    </script>
+
+</body>
+
+</html>
